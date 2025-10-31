@@ -4,9 +4,12 @@ import { Link } from 'react-router-dom';
 function Header() {
   return (
     <header className="header">
-      <div className="logo"> 
-        Factuline
+      <Link to="/" className="logo">
+      <div className="logo-image">
+        <img src="public/assets/logo.jpeg" alt="" />
       </div>
+      </Link>
+
       <nav>
         <ul>
           <li className='nav-list'><a href="#inicio">Inicio</a></li>

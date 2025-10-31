@@ -1,9 +1,16 @@
-import React from 'react';
-import Hero from '../components/Hero.jsx';
-import Features from '../components/Features.jsx';
-import ContentSection from '../components/ContentSection.jsx';
+// src/pages/HomePage.jsx - VERSIÓN LIMPIA
 
-function HomePage() {
+import React from 'react';
+
+// NO HAY NINGUNA importación de { Routes } o { Route } aquí
+
+import Hero from '../components/Hero';
+import Features from '../components/Features';
+import ContentSection from '../components/ContentSection';
+
+function HomePage() { 
+
+  // NO HAY NINGÚN <Routes> aquí
   return (
     <>
       <Hero />
