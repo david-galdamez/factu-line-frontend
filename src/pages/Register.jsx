@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
 
 
+
 function Register() {
   return (
     <div className="register-container">
 
       {/* Columna Izquierda (Sidebar) */}
       <div className="register-sidebar">
-        <img src="/assets/logo.jpeg" alt="FactuLine Logo" className="register-logo" />
-        <h2 className="register-brand-name">FactuLine</h2>
+         <img src="/assets/logo_factuline.svg" alt="FactuLine Logo" className="register-logo" />
         <p className="register-slogan">Apoyando a las PYMES de El Salvador</p>
       </div>
 
