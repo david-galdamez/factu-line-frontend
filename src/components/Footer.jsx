@@ -8,7 +8,6 @@ function Footer() {
         <span>X</span>
         <span>IG</span>
         <span>YT</span>
-        <span>IN</span>
       </div>
       <div className="footer-logo">
         FactuLine
