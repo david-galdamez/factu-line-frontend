@@ -3,6 +3,8 @@ import React from 'react';
 function ContentSection() {
   return (
     <section className="content-section">
+      <link rel="stylesheet" href="3d.css" />
+      
       <div className="content-text">
         <h2>Facturación electrónica en El Salvador: Innovación Tributaria y Ventajas Sostenibles</h2>
         <p>
@@ -10,7 +12,6 @@ function ContentSection() {
         </p>
       </div>
       <div className="content-image">
-        {/* Usamos un placeholder de imagen. Reemplaza `src` con tu imagen real */}
         <img 
           src="/public/assets/factura.png" 
           alt="Facturación electrónica" 

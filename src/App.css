@@ -91,10 +91,12 @@ main {
 
 /* Hero Section */
 .hero {
-  background: linear-gradient(135deg, #000000, #0953AE);
+  background: linear-gradient(135deg, #000000, #0953AE, #053A7D, #000000);
+  background-size: 300% 300%; 
   color: white;
   text-align: center;
   padding: 80px 20px;
+  animation: animatedGradient 15s ease-in-out infinite;
 }
 
 .hero h1 {
@@ -187,7 +189,7 @@ main {
 
 .content-image {
   flex: 1;
-  min-width: 300px; /* Ancho mÃ­nimo para la imagen */
+  min-width: 300px; 
   text-align: center;
 }
 
@@ -196,6 +198,9 @@ main {
   height: auto;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
 }
 
 /* Footer */
@@ -219,7 +224,7 @@ main {
   font-weight: bold;
 }
 
-/* --- Estilos para la pÃ¡gina de Login --- */
+/* --- Estilos para la pagina de Login --- */
 
 .login-container {
   background: linear-gradient(105deg, #000000 -20%, #1965c1 90% );
@@ -316,7 +321,7 @@ main {
 }
 
 .register-logo {
-  max-width: 120px; /* Ajusta el tamaÃ±o del logo */
+  max-width: 120px; /* Ajusta el tamaño del logo */
   margin-bottom: 20px;
   
 }
@@ -436,4 +441,23 @@ main {
 
 .login-link a:hover {
   text-decoration: underline;
+}
+
+
+/*errores*/
+.error {
+  color: rgb(255, 0, 0);
+  font-weight: bold;
+}
+
+@keyframes animatedGradient {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
 }
