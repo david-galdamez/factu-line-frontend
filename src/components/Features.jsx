@@ -9,11 +9,11 @@ const featuresList = [
 
 function Features() {
   return (
-    <section className="features reveal-on-scroll reveal-stagger">
+    <section className="features">
       <h2>¿Cómo simplificamos tu negocio?</h2>
       <div className="features-container">
         {featuresList.map((feature, index) => (
-          <div className="feature-card reveal-on-scroll" key={index}>
+          <div className="feature-card" key={index}>
             <p>{feature.title}</p>
             <div className="image-placeholder">
               <span>Imagen</span>
