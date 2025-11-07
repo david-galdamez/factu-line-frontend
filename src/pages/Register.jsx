@@ -124,8 +124,12 @@ function Register() {
                     <div className="terms-box">
                         <p>
                             Al presionar el botón de "Crear cuenta" usted acepta los
-                            <a href="#terminos"> Terminos y Condiciones</a> y la
-                            <a href="#privacidad"> Política de provacidad</a>
+                            <Link to="/terms" className="termsPriv-link">
+                                Términos y Condiciones
+                            </Link> y la
+                            <Link to="/privacy" className="termsPriv-link"> Política de Privacidad
+                            </Link>
+                            
                         </p>
                     </div>
 

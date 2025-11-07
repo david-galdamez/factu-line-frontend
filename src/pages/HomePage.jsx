@@ -10,7 +10,6 @@ import ContentSection from '../components/ContentSection';
 
 function HomePage() { 
 
-  // NO HAY NINGÚN <Routes> aquí
   return (
     <>
       <Hero />

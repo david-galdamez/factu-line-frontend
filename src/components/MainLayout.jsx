@@ -1,7 +1,9 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom'; 
 import Header from './Header'; 
+import TermsBar from './TermsBar';
 import Footer from './Footer'; 
+
 
 function MainLayout() {
   return (
@@ -10,7 +12,8 @@ function MainLayout() {
       <main>
         <Outlet />
       </main>
-      <Footer />
+        <Footer />
+        <TermsBar />
     </>
   );
 }
