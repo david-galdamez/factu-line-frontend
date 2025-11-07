@@ -5,78 +5,131 @@ function Privacy() {
   return (
     <div className="termsPriv-container">
       <div className="termsPriv-content-wrapper">
-        <h1 className="termsPriv-title">Términos y Condiciones</h1>
+        <h1 className="termsPriv-title">Políticas de Privacidad</h1>
         <hr className="termsPriv-divider" />
 
         <p className="termsPriv-intro">
-          Bienvenido(a) a <strong>FactuLine</strong>, una plataforma web destinada a la gestión y emisión de facturas electrónicas con el objetivo de facilitar la administración de datos financieros de manera sencilla y segura.
-          <br /><br />
-          El acceso y uso de este sitio web implica la aceptación plena de los presentes Términos y Condiciones. Si no está de acuerdo con alguno de ellos, deberá abstenerse de utilizar el servicio.
+          En <strong>FactuLine</strong>, valoramos la privacidad de nuestros usuarios y reconocemos la importancia de proteger su información personal. Esta Política de Privacidad explica cómo recopilamos, usamos y protegemos los datos proporcionados al utilizar nuestro sitio web o aplicación con fines académicos.
         </p>
 
         <section className="termsPriv-section">
-          <h2>1. Objetivo del sitio</h2>
+          <h2>1. Información que recopilamos</h2>
           <p>
-            El presente sitio web tiene como finalidad permitir al usuario registrar, almacenar y gestionar información relacionada con la facturación (clientes, productos, montos, monedas, etc.) en un entorno educativo y demostrativo.
-          </p>
-        </section>
-
-        <section className="termsPriv-section">
-          <h2>2. Uso permitido</h2>
-          <p>Al utilizar esta plataforma, usted se compromete a:</p>
-          <ul>
-            <li>Utilizar la plataforma únicamente con fines académicos o demostrativos.</li>
-            <li>No ingresar información falsa, inapropiada o que infrinja derechos de terceros.</li>
-            <li>No realizar acciones que puedan dañar, sobrecargar o afectar el funcionamiento del sistema.</li>
-          </ul>
-          <p className="termsPriv-warning">
-            El incumplimiento de estas condiciones podrá conllevar la suspensión temporal o permanente del acceso a la plataforma.
-          </p>
-        </section>
-
-        <section className="termsPriv-section">
-          <h2>3. Registro y datos del usuario</h2>
-          <p>
-            Para acceder a determinadas funciones, el usuario podrá crear una cuenta mediante un formulario de registro. El usuario es responsable de:
+            Durante el uso de la plataforma, podemos recopilar información que el
+            usuario proporciona voluntariamente, como:
           </p>
           <ul>
-            <li>Mantener la confidencialidad de sus credenciales.</li>
-            <li>Verificar la exactitud de los datos proporcionados.</li>
-            <li>Notificar cualquier uso no autorizado de su cuenta.</li>
+            <li>Nombre, correo electrónico o datos de contacto.</li>
+            <li>
+              Información relacionada con facturas, clientes, productos y montos
+              ingresados.
+            </li>
+            <li>Datos técnicos como dirección IP o tipo de navegador.</li>
           </ul>
-          <p>
-            FactuLine no se hace responsable de los daños o pérdidas derivados del uso indebido de las credenciales por parte del usuario o terceros.
+          <p className="mb-6">
+            Todos los datos recopilados se utilizan exclusivamente con fines de
+            prueba, demostración y aprendizaje, **sin ningún propósito comercial o
+            de almacenamiento permanente**.
           </p>
         </section>
 
         <section className="termsPriv-section">
-          <h2>4. Propiedad intelectual</h2>
+          <h2>2. Uso de la información</h2>
           <p>
-            Todos los contenidos, diseños, logotipos, iconos y componentes de la plataforma son propiedad de FactuLine, salvo indicación contraria. El uso del sitio no otorga ningún tipo de derecho de propiedad intelectual sobre los contenidos, interfaces o funcionalidades.
+            La información proporcionada se utiliza únicamente para el correcto
+            funcionamiento y demostración del sistema. Los fines principales son:
+          </p>
+          <ul>
+            <li>Permitir el acceso y uso de las funciones de facturación.</li>
+            <li>Simular procesos académicos de registro y almacenamiento.</li>
+            <li>Mejorar la experiencia del usuario dentro del entorno educativo.</li>
+          </ul>
+        </section>
+
+        <section className="termsPriv-section">
+          <h2>3. Protección de los datos </h2>
+          <p>
+            Implementamos medidas razonables de seguridad para proteger la
+            información del usuario contra accesos no autorizados, pérdida o
+            alteración. Sin embargo, el usuario reconoce que **ningún sistema es
+            completamente seguro** y que los datos pueden eliminarse en cualquier
+            momento como parte del mantenimiento o pruebas del sistema.
           </p>
         </section>
 
         <section className="termsPriv-section">
-          <h2>5. Privacidad y tratamiento de datos</h2>
+          <h2>4. Divulgación de información a terceros</h2>
           <p>
-            Los datos ingresados por los usuarios se utilizan únicamente con fines de demostración académica. No se almacenan ni comparten con terceros. El usuario entiende que la información puede ser eliminada en cualquier momento como parte de las pruebas y mantenimiento del sistema.
+            <strong>FactuLine</strong> no comparte, vende ni divulga información de
+            los usuarios a terceros. Los datos se utilizan únicamente dentro del
+            ámbito académico y no se emplean con fines publicitarios ni
+            comerciales.
           </p>
         </section>
 
         <section className="termsPriv-section">
-          <h2>6. Limitación de responsabilidad</h2>
+          <h2>5. Uso de cookies y tecnologías similares</h2>
           <p>
-            FactuLine no garantiza la disponibilidad continua del servicio ni la exactitud de los cálculos generados. El uso de esta plataforma es bajo propio riesgo del usuario, y su información puede no reflejar datos reales de facturación.
-          </p>
-          <p>
-            La aplicación no reemplaza sistemas oficiales de facturación electrónica ni tiene validez legal ante ninguna institución gubernamental.
+            El sitio puede utilizar cookies o herramientas similares para mejorar la
+            experiencia del usuario, recordar preferencias de sesión o recopilar
+            estadísticas de navegación. El usuario puede deshabilitar las cookies
+            desde la configuración de su navegador sin afectar el acceso general a
+            la plataforma.
           </p>
         </section>
+
+        <section className="termsPriv-section">
+          <h2>6. Enlaces a sitios externos </h2>
+          <p>
+            Nuestro sitio puede contener enlaces a páginas externas. No somos
+            responsables de las prácticas de privacidad ni del contenido de dichos
+            sitios. Se recomienda leer las políticas de privacidad de cada sitio
+            visitado.
+          </p>
+        </section>
+
+        <section className="termsPriv-section">
+          <h2>
+            7. Derechos del usuario
+          </h2>
+          <p>
+            El usuario tiene derecho a solicitar la eliminación de su información de
+            prueba en cualquier momento. Dado que el propósito de la plataforma es
+            educativo, los datos pueden ser eliminados de forma automática sin
+            previo aviso.
+          </p>
+        </section>
+
+        <section className="termsPriv-section">
+          <h2>
+            8. Cambios a esta política
+          </h2>
+          <p>
+            Nos reservamos el derecho de modificar o actualizar esta Política de
+            Privacidad en cualquier momento. Las modificaciones serán publicadas en
+            esta página con la fecha correspondiente.
+          </p>
+        </section>
+
+        <section className="termsPriv-section">
+          <h2>
+            9. Contactos
+          </h2>
+          <p>
+            Si tienes dudas o sugerencias sobre esta Política de Privacidad, puedes
+            comunicarte con nosotros al correo:
+          </p>
+          <a href="mailto:info@factuline.com" className="contact-email">
+            <span className="email-icon">✉️</span>
+            info@factuline.com
+          </a>
+        </section>
+
 
         <section className="termsPriv-section termsPriv-final-note">
-          <h2>Modificaciones</h2>
           <p>
-            FactuLine se reserva el derecho de modificar o actualizar los presentes Términos y Condiciones en cualquier momento. Las modificaciones entrarán en vigor desde su publicación en este sitio.
+            ⚠️ Esta política ha sido elaborada con fines exclusivamente académicos,
+            para simular una Política de Privacidad en un entorno de desarrollo web.
           </p>
         </section>
 
