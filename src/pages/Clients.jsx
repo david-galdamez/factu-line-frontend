@@ -16,7 +16,7 @@ export default function Clients() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const res = await fetch(`${BASE_URL}/clients/list`, {
+            const res = await fetch(`${BASE_URL}/clients/list?email=${email}`, {
                 method: "GET",
                 credentials: "include",
             });

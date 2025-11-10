@@ -410,6 +410,7 @@ main {
 
 .clients-list {
     width: 100%;
+    overflow-y: auto; /* permite scroll horizontal en móviles */
     overflow-x: auto; /* permite scroll horizontal en móviles */
     background: #fff;
     border-radius: 12px;
@@ -788,4 +789,9 @@ main {
     100% {
         background-position: 0% 0%;
     }
+}
+
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }

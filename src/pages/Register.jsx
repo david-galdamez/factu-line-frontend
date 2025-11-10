@@ -17,6 +17,7 @@ function Register() {
         confirmPassword: "",
     });
 
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [zodErrors, setZodErrors] = useState(null);
     const navigate = useNavigate();
@@ -32,7 +33,7 @@ function Register() {
         e.preventDefault();
         setError("");
         setZodErrors(null);
-
+        setLoading(true);
         if (formData.password !== formData.confirmPassword) {
             setError("Las contraseñas no coinciden");
             return;
@@ -67,6 +68,8 @@ function Register() {
         } catch (err) {
             console.error(err);
             setError(err.message);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -216,7 +219,11 @@ function Register() {
                         </p>
                     </div>
 
-                    <button type="submit" className="btn-register-submit">
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className={`btn-register-submit ${loading ? "disabled" : ""}`}
+                    >
                         Crear cuenta
                     </button>
 

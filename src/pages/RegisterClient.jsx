@@ -13,6 +13,7 @@ function RegisterClient() {
         phone: "",
         email: "",
     });
+    const [loading, setLoading] = useState(false);
     const [zodErrors, setZodErrors] = useState(null);
     const [error, setError] = useState("");
     let navigate = useNavigate();
@@ -25,6 +26,7 @@ function RegisterClient() {
         e.preventDefault();
         setError("");
         setZodErrors(null);
+        setLoading(true);
         try {
             const res = await fetch(`${BASE_URL}/clients/register`, {
                 method: "POST",
@@ -50,10 +52,13 @@ function RegisterClient() {
                 //NAVEGAR A EL DASHBOARD
                 toast.success(data.message);
                 navigate("/clients");
+                setLoading(true);
             }
         } catch (err) {
             console.error(err);
             setError(err.message);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -154,7 +159,10 @@ function RegisterClient() {
 
                     {error && <p className="error">{error}</p>}
 
-                    <button type="submit" className="btn-register-submit">
+                    <button
+                        type="submit"
+                        className={`btn-register-submit ${loading ? "disabled" : ""}`}
+                    >
                         Crear Cliente
                     </button>
                 </form>

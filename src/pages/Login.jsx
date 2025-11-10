@@ -9,6 +9,7 @@ function Login() {
     const [login, setLogin] = useState({ email: "", password: "" });
     const [formError, setFormError] = useState({ email: "", password: "" });
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
     let navigate = useNavigate();
 
     const handleChange = (event) => {
@@ -20,6 +21,7 @@ function Login() {
         try {
             setError("");
             setFormError({ email: "", password: "" });
+            setLoading(true);
             const res = await fetch(`${BASE_URL}/business/login`, {
                 method: "POST",
                 headers: {
@@ -55,6 +57,8 @@ function Login() {
         } catch (err) {
             console.error(err);
             toast.error(err.message);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -106,7 +110,11 @@ function Login() {
 
                 {error && <p className="error">{error}</p>}
 
-                <button type="submit" className="btn-login-submit">
+                <button
+                    type="submit"
+                    className={`btn-login-submit ${loading ? "disabled" : ""}`}
+                    disabled={loading}
+                >
                     Sign In
                 </button>
 
