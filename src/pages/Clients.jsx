@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Clients() {
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -21,9 +23,12 @@ export default function Clients() {
                         <button type="submit" className="btn btn-register">
                             Filtrar
                         </button>
-                        <button type="button" className="btn btn-register">
+                        <Link to="/registerClient" className="btn btn-register">
                             Crear Cliente
-                        </button>
+                        </Link>
+                        
+
+                        
                     </div>
                 </form>
                 <div className="clients-list">

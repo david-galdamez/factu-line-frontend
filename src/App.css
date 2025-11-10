@@ -96,6 +96,7 @@ main {
     text-align: center;
     padding: 80px 300px;
     animation: animatedGradient 15s ease-in-out infinite;
+    animation: fadeIn 0.5s ease;
 }
 
 .hero h1 {
@@ -741,7 +742,7 @@ main {
     background-color: #2f45a0;
 }
 
-/* Enlace a Iniciar SesiÃ³n */
+/* Enlace a Iniciar Sesion*/
 .login-link {
     text-align: center;
     margin-top: 30px;
