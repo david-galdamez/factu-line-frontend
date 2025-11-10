@@ -1,6 +1,9 @@
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../constants/BaseUrl";
 import { useState } from "react";
+import toast from "react-hot-toast";
+import { useEffect } from "react";
+import { verifyLogin } from "../services/VerifyLogin";
 
 function Login() {
     const [login, setLogin] = useState({ email: "", password: "" });
@@ -46,14 +49,25 @@ function Login() {
             const successData = await res.json();
             if (successData.success) {
                 //NAVEGAR A EL DASHBOARD
-                navigate("/dashboard", {
-                    state: { toastMessage: successData.message },
-                });
+                toast.success(successData.message);
+                navigate("/dashboard");
             }
         } catch (err) {
             console.error(err);
+            toast.error(err.message);
         }
     };
+
+    useEffect(() => {
+        const verify = async () => {
+            const isLoggedIn = await verifyLogin();
+
+            if (isLoggedIn) {
+                navigate("/invoices");
+            }
+        };
+        verify();
+    }, []);
 
     return (
         <div className="login-container">
