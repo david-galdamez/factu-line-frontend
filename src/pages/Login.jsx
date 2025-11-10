@@ -50,7 +50,7 @@ function Login() {
             if (successData.success) {
                 //NAVEGAR A EL DASHBOARD
                 toast.success(successData.message);
-                navigate("/dashboard");
+                navigate("/invoices");
             }
         } catch (err) {
             console.error(err);
@@ -80,6 +80,8 @@ function Login() {
                         id="email"
                         onChange={handleChange}
                         placeholder="Correo"
+                        required
+                        value={login.email}
                     />
                     {formError.email && (
                         <p className="error">{formError.email}</p>
@@ -94,6 +96,8 @@ function Login() {
                         name="password"
                         onChange={handleChange}
                         placeholder="Contraseña"
+                        required
+                        value={login.password}
                     />
                     {formError.password && (
                         <p className="error">{formError.password}</p>

@@ -12,8 +12,7 @@ export async function verifyLogin() {
         }
 
         return true;
-    } catch (err) {
-        console.error(err);
+    } catch {
         return false;
     }
 }

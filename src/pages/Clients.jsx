@@ -1,9 +1,47 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { verifyLogin } from "../services/VerifyLogin";
+import { BASE_URL } from "../constants/BaseUrl";
+import { useState } from "react";
 
 export default function Clients() {
+    const [email, setEmail] = useState("");
+    const [clients, setClients] = useState([]);
+    let navigate = useNavigate();
+
+    const handleChange = (event) => {
+        setEmail(event.target.value);
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
+        try {
+            const res = await fetch(`${BASE_URL}/clients/list`, {
+                method: "GET",
+                credentials: "include",
+            });
+            if (!res.ok) {
+                throw new Error("Error fetching clients");
+            }
+
+            const data = await res.json();
+            console.log(data);
+            setClients(data.data.clients);
+        } catch (err) {
+            console.error(err);
+        }
     };
+
+    useEffect(() => {
+        const verify = async () => {
+            const isLoggedIn = await verifyLogin();
+
+            if (!isLoggedIn) {
+                navigate("/login");
+            }
+        };
+        verify();
+    }, []);
 
     return (
         <section className="hero hero-pages">
@@ -17,33 +55,49 @@ export default function Clients() {
                         <input
                             type="email"
                             placeholder="Filtrar por correo electrónico"
+                            onChange={handleChange}
                         />
                     </div>
                     <div>
                         <button type="submit" className="btn btn-register">
                             Filtrar
                         </button>
-                        <Link to="/registerClient" className="btn btn-register">
+                        <Link
+                            to="/clients/register"
+                            className="btn btn-register"
+                        >
                             Crear Cliente
                         </Link>
-                        
-
-                        
                     </div>
                 </form>
-                <div className="clients-list">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Correo Electrónico</th>
-                                <th>Dui</th>
-                                <th>Direccion</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
+                {clients.length < 1 ? (
+                    <div className="clients-empty">
+                        No hay clientes registrados
+                    </div>
+                ) : (
+                    <div className="clients-list">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Correo Electrónico</th>
+                                    <th>Dui</th>
+                                    <th>Direccion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {clients.map((client) => (
+                                    <tr key={client.id}>
+                                        <td>{client.name}</td>
+                                        <td>{client.email}</td>
+                                        <td>{client.dui}</td>
+                                        <td>{client.address}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                )}
             </div>
         </section>
     );
