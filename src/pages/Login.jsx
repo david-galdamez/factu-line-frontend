@@ -43,7 +43,7 @@ function Login() {
                 } else {
                     //PARA TODO LOS DEMAS ERRORES
                     const conflict = await res.json();
-                    console.error(conflict.error);
+                    toast.error(conflict.error);
                     setError(conflict.error);
                 }
             }
@@ -56,7 +56,6 @@ function Login() {
             }
         } catch (err) {
             console.error(err);
-            toast.error(err.message);
         } finally {
             setLoading(false);
         }

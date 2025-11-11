@@ -195,14 +195,7 @@ function Register() {
                         />
                     </div>
 
-                    {error && (
-                        <p
-                            className="error"
-                            style={{ color: "red", textAlign: "center" }}
-                        >
-                            {error}
-                        </p>
-                    )}
+                    {error && <p className="error">{error}</p>}
 
                     <div className="terms-box">
                         <p>

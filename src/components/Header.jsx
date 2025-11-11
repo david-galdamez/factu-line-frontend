@@ -1,11 +1,12 @@
 import { useEffect } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { verifyLogin } from "../services/VerifyLogin";
 import { useState } from "react";
 import { BASE_URL } from "../constants/BaseUrl";
 
 function Header() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const location = useLocation();
     let navigate = useNavigate();
 
     useEffect(() => {
@@ -14,7 +15,7 @@ function Header() {
             setIsLoggedIn(logged);
         };
         verify();
-    }, []);
+    }, [location]);
 
     const logOut = () => {
         fetch(`${BASE_URL}/business/logout`, {

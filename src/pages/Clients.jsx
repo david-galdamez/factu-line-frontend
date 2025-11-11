@@ -6,6 +6,7 @@ import { useState } from "react";
 
 export default function Clients() {
     const [email, setEmail] = useState("");
+    const [loading, setLoading] = useState(false);
     const [clients, setClients] = useState([]);
     let navigate = useNavigate();
 
@@ -15,6 +16,7 @@ export default function Clients() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setLoading(true);
         try {
             const res = await fetch(`${BASE_URL}/clients/list?email=${email}`, {
                 method: "GET",
@@ -29,6 +31,8 @@ export default function Clients() {
             setClients(data.data.clients);
         } catch (err) {
             console.error(err);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -59,7 +63,10 @@ export default function Clients() {
                         />
                     </div>
                     <div>
-                        <button type="submit" className="btn btn-register">
+                        <button
+                            type="submit"
+                            className={`btn btn-register ${loading ? "disabled" : ""}`}
+                        >
                             Filtrar
                         </button>
                         <Link
@@ -71,11 +78,11 @@ export default function Clients() {
                     </div>
                 </form>
                 {clients.length < 1 ? (
-                    <div className="clients-empty">
+                    <div className="table-empty">
                         No hay clientes registrados
                     </div>
                 ) : (
-                    <div className="clients-list">
+                    <div className="table-list">
                         <table>
                             <thead>
                                 <tr>
