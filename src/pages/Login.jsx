@@ -111,10 +111,17 @@ function Login() {
 
                 <button
                     type="submit"
-                    className={`btn-login-submit ${loading ? "disabled" : ""}`}
+                    className={`btn-login-submit ${loading ? "loading" : ""}`}
                     disabled={loading}
                 >
-                    Sign In
+                    {loading ? (
+                        <>
+                            <i className="fa fa-spinner fa-pulse"></i>
+                            <span> Loading...</span>
+                        </>
+                    ) : (
+                        "Sign In"
+                    )}
                 </button>
 
                 <a href="#forgot" className="forgot-password">
