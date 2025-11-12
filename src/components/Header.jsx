@@ -1,11 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react"; // <-- Importa useState
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { verifyLogin } from "../services/VerifyLogin";
-import { useState } from "react";
 import { BASE_URL } from "../constants/BaseUrl";
 
 function Header() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false); // <-- 1. Estado para el menú
     const location = useLocation();
     let navigate = useNavigate();
 
@@ -17,6 +17,15 @@ function Header() {
         verify();
     }, [location]);
 
+    // 2. Funciones para controlar el menú
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
+    const closeMenu = () => {
+        setIsMenuOpen(false);
+    };
+
     const logOut = () => {
         fetch(`${BASE_URL}/business/logout`, {
             method: "POST",
@@ -25,6 +34,7 @@ function Header() {
             .then((res) => {
                 if (res.ok) {
                     setIsLoggedIn(false);
+                    closeMenu(); // <-- Cierra el menú al cerrar sesión
                     navigate("/");
                 }
             })
@@ -35,45 +45,59 @@ function Header() {
 
     return (
         <header className="header">
-            <Link to="/" className="logo">
-                <div className="logo-image">
-                    <img
-                        src="/assets/logo_factuline.svg"
-                        alt="FactuLine Logo"
-                        className="register-logo"
-                    />
-                </div>
-            </Link>
-
-            <nav>
-                <ul>
-                    <li className="nav-list">
-                        <Link to="/">Inicio</Link>
-                    </li>
-                    <li className="nav-list">
-                        <Link to="/clients">Clientes</Link>
-                    </li>
-                    <li className="nav-list">
-                        <Link to="/invoices/create">Crear factura</Link>
-                    </li>
-                    <li className="nav-list">
-                        <Link to="/invoices">Archivo</Link>
-                    </li>
-                    <li className="nav-list">
-                        <Link to="/products">Productos</Link>
-                    </li>
-                </ul>
-            </nav>
-
-            {isLoggedIn ? (
-                <button className="btn btn-login" onClick={logOut}>
-                    Cerrar Sesión
-                </button>
-            ) : (
-                <Link to="/login" className="btn btn-login">
-                    Iniciar Sesión
+            {/* Contenedor principal para logo y botón de menú */}
+            <div className="header-main">
+                <Link to="/" className="logo" onClick={closeMenu}>
+                    <div className="logo-image">
+                        <img
+                            src="/assets/logo_factuline.svg"
+                            alt="FactuLine Logo"
+                            className="register-logo"
+                        />
+                    </div>
                 </Link>
-            )}
+
+                {/* 3. Botón de Hamburguesa (solo visible en móvil) */}
+                <button className="hamburger-btn" onClick={toggleMenu} aria-label="Abrir menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+
+            {/* 4. Contenedor de navegación (se colapsa) */}
+            <div className={`nav-container ${isMenuOpen ? "nav-open" : ""}`}>
+                <nav>
+                    <ul>
+                        {/* 5. Se añade 'onClick={closeMenu}' para cerrar al navegar */}
+                        <li className="nav-list">
+                            <Link to="/" onClick={closeMenu}>Inicio</Link>
+                        </li>
+                        <li className="nav-list">
+                            <Link to="/clients" onClick={closeMenu}>Clientes</Link>
+                        </li>
+                        <li className="nav-list">
+                            <Link to="/invoices/create" onClick={closeMenu}>Crear factura</Link>
+                        </li>
+                        <li className="nav-list">
+                            <Link to="/invoices" onClick={closeMenu}>Archivo</Link>
+                        </li>
+                        <li className="nav-list">
+                            <Link to="/products" onClick={closeMenu}>Productos</Link>
+                        </li>
+                    </ul>
+                </nav>
+
+                {isLoggedIn ? (
+                    <button className="btn btn-login" onClick={logOut}>
+                        Cerrar Sesión
+                    </button>
+                ) : (
+                    <Link to="/login" className="btn btn-login" onClick={closeMenu}>
+                        Iniciar Sesión
+                    </Link>
+                )}
+            </div>
         </header>
     );
 }
