@@ -1035,4 +1035,38 @@ main {
         flex-direction: column;
         padding: 40px 20px;
       }
+
+      /* Ajustes para Registro (Aplica para registro de cuenta y registro de clientes) */
+      .register-container {
+        flex-direction: column;
+        min-height: 100vh; 
+      }
+
+      .register-sidebar {
+        flex-basis: auto;
+        width: 100%;
+        padding: 40px 20px;
+        min-height: 250px;
+        justify-content: center;
+      }
+      
+      .register-form-container {
+        flex-basis: auto;
+        width: 100%;
+        padding: 40px 20px;
+      }
+      
+      .register-form {
+
+        max-width: 100%;
+      }
+
+      .register-form h2 {
+        font-size: 28px; 
+      }
+
+      .register-logo {
+        max-width: 100px; 
+      }
+
 }
