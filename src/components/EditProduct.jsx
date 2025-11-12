@@ -5,9 +5,9 @@ import toast from "react-hot-toast";
 
 Modal.setAppElement("#root");
 
-export default function ModalComponent({ onProductRegister }) {
+export default function EditProduct({ product, onProductUpdated }) {
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [registerProduct, setRegisterProduct] = useState({
+    const [editProduct, setEditProduct] = useState({
         name: "",
         description: "",
         unit_price: "",
@@ -21,16 +21,18 @@ export default function ModalComponent({ onProductRegister }) {
         setZodErrors(null);
         setLoading(true);
         try {
-            registerProduct.unit_price = parseFloat(registerProduct.unit_price);
-            console.log(registerProduct);
-            const res = await fetch(`${BASE_URL}/products/register`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
+            editProduct.unit_price = parseFloat(editProduct.unit_price);
+            const res = await fetch(
+                `${BASE_URL}/products/update/${product.id}`,
+                {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(editProduct),
+                    credentials: "include",
                 },
-                body: JSON.stringify(registerProduct),
-                credentials: "include",
-            });
+            );
 
             const data = await res.json();
             if (!res.ok) {
@@ -42,10 +44,10 @@ export default function ModalComponent({ onProductRegister }) {
                 return;
             }
 
-            if (onProductRegister) {
-                await onProductRegister();
-            }
             toast.success(data.message);
+            if (onProductUpdated) {
+                await onProductUpdated();
+            }
             setModalIsOpen(false);
         } catch (err) {
             console.error(err);
@@ -56,8 +58,8 @@ export default function ModalComponent({ onProductRegister }) {
     };
 
     const handleChange = (e) => {
-        setRegisterProduct({
-            ...registerProduct,
+        setEditProduct({
+            ...editProduct,
             [e.target.name]: e.target.value,
         });
     };
@@ -67,6 +69,11 @@ export default function ModalComponent({ onProductRegister }) {
     };
 
     const openModal = () => {
+        setEditProduct({
+            name: product.name,
+            description: product.description,
+            unit_price: String(product.unit_price),
+        });
         setModalIsOpen(true);
     };
 
@@ -92,12 +99,8 @@ export default function ModalComponent({ onProductRegister }) {
 
     return (
         <>
-            <button
-                className="btn btn-register"
-                type="button"
-                onClick={openModal}
-            >
-                Crear Producto
+            <button className="btn btn-edit" type="button" onClick={openModal}>
+                Editar
             </button>
             <Modal
                 isOpen={modalIsOpen}
@@ -115,6 +118,7 @@ export default function ModalComponent({ onProductRegister }) {
                             name="name"
                             required
                             onChange={handleChange}
+                            value={editProduct.name}
                         />
                         {zodErrors?.name && (
                             <p className="error">{zodErrors.name[0]}</p>
@@ -128,6 +132,7 @@ export default function ModalComponent({ onProductRegister }) {
                             name="description"
                             required
                             onChange={handleChange}
+                            value={editProduct.description}
                         />
                         {zodErrors?.description && (
                             <p className="error">{zodErrors.description[0]}</p>
@@ -142,6 +147,7 @@ export default function ModalComponent({ onProductRegister }) {
                             placeholder="3.99..."
                             required
                             onChange={handleChange}
+                            value={editProduct.unit_price}
                         />
                         {zodErrors?.unit_price && (
                             <p className="error">{zodErrors.unit_price[0]}</p>
@@ -154,7 +160,7 @@ export default function ModalComponent({ onProductRegister }) {
                             type="submit"
                             onClick={handleSubmit}
                         >
-                            Registrar
+                            Editar
                         </button>
                         <button
                             className="btn-register-cancel"

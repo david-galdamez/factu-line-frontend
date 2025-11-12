@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { verifyLogin } from "../services/VerifyLogin";
 import ModalComponent from "../components/ModalComponent";
+import EditProduct from "../components/EditProduct";
 
 export default function Products() {
     const [nombre, setNombre] = useState("");
@@ -15,12 +16,10 @@ export default function Products() {
         setNombre(event.target.value);
     };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        setLoading(true);
+    const fetchProducts = async () => {
         try {
             const res = await fetch(
-                `${BASE_URL}/products/list?nombre=${nombre}`,
+                `${BASE_URL}/products/list?name=${nombre}`,
                 {
                     method: "GET",
                     credentials: "include",
@@ -31,13 +30,18 @@ export default function Products() {
             }
 
             const data = await res.json();
-            console.log(data);
             setProducts(data.data.products);
         } catch (err) {
             console.error(err);
         } finally {
             setLoading(false);
         }
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        setLoading(true);
+        await fetchProducts();
     };
 
     useEffect(() => {
@@ -61,7 +65,7 @@ export default function Products() {
                 >
                     <div>
                         <input
-                            type="email"
+                            type="text"
                             placeholder="Filtrar por nombre producto"
                             onChange={handleChange}
                         />
@@ -73,7 +77,7 @@ export default function Products() {
                         >
                             Filtrar
                         </button>
-                        <ModalComponent />
+                        <ModalComponent onProductRegister={fetchProducts} />
                     </div>
                 </form>
                 {products.length < 1 ? (
@@ -89,6 +93,7 @@ export default function Products() {
                                     <th>Name</th>
                                     <th>Description</th>
                                     <th>Unit Price</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -98,6 +103,12 @@ export default function Products() {
                                         <td>{product.name}</td>
                                         <td>{product.description}</td>
                                         <td>${product.unit_price}</td>
+                                        <td>
+                                            <EditProduct
+                                                product={product}
+                                                onProductUpdated={fetchProducts}
+                                            />
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
