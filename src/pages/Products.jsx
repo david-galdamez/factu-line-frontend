@@ -73,7 +73,7 @@ export default function Products() {
                     <div>
                         <button
                             type="submit"
-                            className={`btn btn-register ${loading ? "disabled" : ""}`}
+                            className={`btn-clients-products ${loading ? "disabled" : ""}`}
                         >
                             Filtrar
                         </button>
