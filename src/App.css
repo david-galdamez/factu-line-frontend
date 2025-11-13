@@ -42,56 +42,56 @@ main {
 }
 
 .btn-register {
-    width: 220px;
-    height: 50px;
-    border: none;
-    outline: none;
-    color: #fff;
-    background: #111;
-    cursor: pointer;
-    position: relative;
-    z-index: 0;
-    border-radius: 10px;
-    text-decoration: none;
-    background: linear-gradient(90deg, #313899, #525eff);
+  width: 220px;
+  height: 50px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  text-decoration: none;
+  background: linear-gradient(90deg, #313899, #525eff);
 }
 
 .btn-register:before {
-    content: '';
-    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
-    position: absolute;
-    top: -2px;
-    left:-2px;
-    background-size: 400%;
-    z-index: -1;
-    filter: blur(5px);
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
-    animation: glowing 20s linear infinite;
-    opacity: 0;
-    transition: opacity .3s ease-in-out;
-    border-radius: 10px;
+  content: '';
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 10px;
 }
 
 
 .btn-register:active:after {
-    background: transparent;
+  background: transparent;
 }
 
 .btn-register:hover:before {
-    opacity: 1;
+  opacity: 1;
 }
 
 .btn-register:after {
-    z-index: -1;
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #111;
-    left: 0;
-    top: 0;
-    border-radius: 10px;
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
 }
 
 /* Header */
@@ -185,7 +185,7 @@ main {
 .hero {
   /* Gradiente con más paradas para un efecto más suave */
   background: linear-gradient(135deg, #000000, #0953AE, #053A7D, #000000);
-  background-size: 300% 300%; 
+  background-size: 300% 300%;
   color: white;
   text-align: center;
   padding: 120px 20px;
@@ -636,9 +636,11 @@ main {
   0% {
     background-position: 0% 0%;
   }
+
   50% {
     background-position: 100% 100%;
   }
+
   100% {
     background-position: 0% 0%;
   }
@@ -649,6 +651,7 @@ main {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -667,9 +670,17 @@ main {
 }
 
 @keyframes glowing {
-    0% { background-position: 0 0; }
-    50% { background-position: 400% 0; }
-    100% { background-position: 0 0; }
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 400% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
 }
 
 .btn-login-submit {
@@ -687,15 +698,15 @@ main {
 }
 
 .btn-login-submit.loading {
-  font-size: 16px; 
+  font-size: 16px;
   background: linear-gradient(90deg, #313899, #525eff);
   box-shadow: 0 0 5px #000;
-  cursor: wait; 
-  opacity: 0.9; 
+  cursor: wait;
+  opacity: 0.9;
 }
 
 .btn-login-submit.loading .fa-spinner {
-  margin-right: 8px; 
+  margin-right: 8px;
 }
 
 .btn-login-submit:hover {
@@ -1046,159 +1057,146 @@ main {
 /* --- Media Queries --- */
 @media (max-width: 768px) {
 
-      /* Ajustes para el header */
-      .header {
-        flex-wrap: wrap;
-      }
-
-      .header-main {
-        width: 100%;
-        justify-content: space-between;
-      }
-
-      .hamburger-btn {
-        display: flex;
-      }
-
-
-      .nav-container {
-        width: 100%;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease-out;
-        flex-direction: column;
-        align-items: center;
-        gap: 0;
-        background-color: white;
-      }
-
-      .nav-container.nav-open {
-        max-height: 500px;
-        padding: 20px 0 25px 0;
-        border-top: 1px solid #eaeaea;
-        margin-top: 15px;
-      }
-
-      .nav-container nav ul {
-        flex-direction: column;
-        text-align: center;
-        width: 100%;
-        gap: 25px;
-      }
-
-
-      .nav-container .btn-login {
-        margin-top: 25px;
-        width: 80%;
-        text-align: center;
-      }
-
-      /* Ajustes para el hero */
-      .hero {
-        padding: 60px 20px;
-      }
-
-      .hero h1 {
-        font-size: 32px;
-      }
-
-      .hero p {
-        font-size: 16px;
-      }
-
-      /* Ajustes para Features*/
-      .features-container {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      /* Ajustes para Content Section */
-      .content-section {
-        flex-direction: column;
-        padding: 40px 20px;
-      }
-
-      /* Ajustes para Registro (Aplica para registro de cuenta y registro de clientes) */
-      .register-container {
-        flex-direction: column;
-        min-height: 100vh; 
-      }
-
-      .register-sidebar {
-        flex-basis: auto;
-        width: 100%;
-        padding: 40px 20px;
-        min-height: 250px;
-        justify-content: center;
-      }
-      
-      .register-form-container {
-        flex-basis: auto;
-        width: 100%;
-        padding: 40px 20px;
-      }
-      
-      .register-form {
-
-        max-width: 100%;
-      }
-
-      .register-form h2 {
-        font-size: 28px; 
-      }
-
-      .register-logo {
-        max-width: 100px; 
-      }
-
-      .form-filter {
-    /* Apila el input y la sección de botones */
-    flex-direction: column;
-    align-items: stretch; /* Estira los elementos al 100% */
-    gap: 15px; /* Añade espacio vertical */
+  /* Ajustes para el header */
+  .header {
+    flex-wrap: wrap;
   }
 
-  .form-filter > div:last-child {
-    /* Apila los botones uno encima del otro */
+  .header-main {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .hamburger-btn {
+    display: flex;
+  }
+
+
+  .nav-container {
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
     flex-direction: column;
-    justify-content: flex-start; /* Resetea la alineación */
-    gap: 10px; /* Espacio vertical entre botones */
+    align-items: center;
+    gap: 0;
+    background-color: white;
+  }
+
+  .nav-container.nav-open {
+    max-height: 500px;
+    padding: 20px 0 25px 0;
+    border-top: 1px solid #eaeaea;
+    margin-top: 15px;
+  }
+
+  .nav-container nav ul {
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    gap: 25px;
+  }
+
+
+  .nav-container .btn-login {
+    margin-top: 25px;
+    width: 80%;
+    text-align: center;
+  }
+
+  /* Ajustes para el hero */
+  .hero {
+    padding: 60px 20px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  /* Ajustes para Features*/
+  .features-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Ajustes para Content Section */
+  .content-section {
+    flex-direction: column;
+    padding: 40px 20px;
+  }
+
+  /* Ajustes para Registro (Aplica para registro de cuenta y registro de clientes) */
+  .register-container {
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .register-sidebar {
+    flex-basis: auto;
+    width: 100%;
+    padding: 40px 20px;
+    min-height: 250px;
+    justify-content: center;
+  }
+
+  .register-form-container {
+    flex-basis: auto;
+    width: 100%;
+    padding: 40px 20px;
+  }
+
+  .register-form {
+
+    max-width: 100%;
+  }
+
+  .register-form h2 {
+    font-size: 28px;
+  }
+
+  .register-logo {
+    max-width: 100px;
+  }
+
+  .form-filter {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+
+  .form-filter>div:last-child {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
   }
 
   .form-filter .btn {
-    width: 100%; /* Hace que los botones ocupen el ancho completo */
+    width: 100%;
     text-align: center;
   }
 
   .table-list {
-    /* Tu 'overflow-x: auto' es la clave. */
-    /* Solo reducimos el padding para dar más espacio */
     padding: 0.5em;
   }
 
   .table-list th,
   .table-list td {
-    /* Menos padding en celdas para que quepa más info */
     padding: 10px 8px;
-    font-size: 14px; /* Letra un poco más pequeña */
+    font-size: 14px;
   }
 
-  /* 3. Mensaje de tabla vacía */
   .table-empty {
-    font-size: 1.5em; /* Un poco más pequeño que 2em */
+    font-size: 1.5em;
   }
 
   .btn-register {
-        /* En pantallas pequeñas, haz que ocupe todo el ancho
-           de su contenedor (ej. el formulario)
-        */
-        width: 100%;
-        
-        /* Opcional: puedes reducir la altura si 50px es muy grande en móvil */
-        height: 48px;
-    }
-
+    width: 100%;
+    height: 48px;
+  }
 
 
 }
-

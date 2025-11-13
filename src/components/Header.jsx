@@ -85,6 +85,9 @@ function Header() {
                         <li className="nav-list">
                             <Link to="/products" onClick={closeMenu}>Productos</Link>
                         </li>
+                        <li className="nav-list">
+                            <Link to="/users" onClick={closeMenu}>Usuarios</Link>
+                        </li>
                     </ul>
                 </nav>
 
