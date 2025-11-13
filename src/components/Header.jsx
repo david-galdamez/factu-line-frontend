@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"; // <-- Importa useState
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { verifyLogin } from "../services/VerifyLogin";
+import { verifyAdminStatus } from "../services/VerifyAdmin";
 import { BASE_URL } from "../constants/BaseUrl";
 
 function Header() {
@@ -13,7 +14,7 @@ function Header() {
     useEffect(() => {
         const verify = async () => {
             const logged = await verifyLogin();
-            const admin = await verifyAdmin();
+            const admin = await verifyAdminStatus();
             setIsLoggedIn(logged);
             setIsAdmin(admin);
         };
@@ -45,10 +46,6 @@ function Header() {
                 console.error(error);
             });
     };
-
-    const getAdminStatus = () => {
-      try
-    }
 
     return (
         <header className="header">
@@ -91,14 +88,13 @@ function Header() {
                                 Clientes
                             </Link>
                         </li>
-                        {
-                          isAdmin &&
-                          <li className="nav-list">
-                            <Link to="/users" onClick={closeMenu}>
-                                  Users
-                              </Link>
-                          </li>
-                        }
+                        {isAdmin && (
+                            <li className="nav-list">
+                                <Link to="/users" onClick={closeMenu}>
+                                    Users
+                                </Link>
+                            </li>
+                        )}
                         <li className="nav-list">
                             <Link to="/invoices/create" onClick={closeMenu}>
                                 Crear factura
@@ -115,7 +111,9 @@ function Header() {
                             </Link>
                         </li>
                         <li className="nav-list">
-                            <Link to="/users" onClick={closeMenu}>Usuarios</Link>
+                            <Link to="/users" onClick={closeMenu}>
+                                Usuarios
+                            </Link>
                         </li>
                     </ul>
                 </nav>
