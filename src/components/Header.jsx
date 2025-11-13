@@ -88,13 +88,6 @@ function Header() {
                                 Clientes
                             </Link>
                         </li>
-                        {isAdmin && (
-                            <li className="nav-list">
-                                <Link to="/users" onClick={closeMenu}>
-                                    Users
-                                </Link>
-                            </li>
-                        )}
                         <li className="nav-list">
                             <Link to="/invoices/create" onClick={closeMenu}>
                                 Crear factura
@@ -110,11 +103,13 @@ function Header() {
                                 Productos
                             </Link>
                         </li>
-                        <li className="nav-list">
-                            <Link to="/users" onClick={closeMenu}>
-                                Usuarios
-                            </Link>
-                        </li>
+                        {isAdmin && (
+                            <li className="nav-list">
+                                <Link to="/users" onClick={closeMenu}>
+                                    Usuarios
+                                </Link>
+                            </li>
+                        )}
                     </ul>
                 </nav>
 
