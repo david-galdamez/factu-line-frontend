@@ -6,13 +6,16 @@ import { BASE_URL } from "../constants/BaseUrl";
 function Header() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false); // <-- 1. Estado para el menú
+    const [isAdmin, setIsAdmin] = useState(false);
     const location = useLocation();
     let navigate = useNavigate();
 
     useEffect(() => {
         const verify = async () => {
             const logged = await verifyLogin();
+            const admin = await verifyAdmin();
             setIsLoggedIn(logged);
+            setIsAdmin(admin);
         };
         verify();
     }, [location]);
@@ -43,6 +46,10 @@ function Header() {
             });
     };
 
+    const getAdminStatus = () => {
+      try
+    }
+
     return (
         <header className="header">
             {/* Contenedor principal para logo y botón de menú */}
@@ -58,7 +65,11 @@ function Header() {
                 </Link>
 
                 {/* 3. Botón de Hamburguesa (solo visible en móvil) */}
-                <button className="hamburger-btn" onClick={toggleMenu} aria-label="Abrir menú">
+                <button
+                    className="hamburger-btn"
+                    onClick={toggleMenu}
+                    aria-label="Abrir menú"
+                >
                     <span></span>
                     <span></span>
                     <span></span>
@@ -71,19 +82,37 @@ function Header() {
                     <ul>
                         {/* 5. Se añade 'onClick={closeMenu}' para cerrar al navegar */}
                         <li className="nav-list">
-                            <Link to="/" onClick={closeMenu}>Inicio</Link>
+                            <Link to="/" onClick={closeMenu}>
+                                Inicio
+                            </Link>
                         </li>
                         <li className="nav-list">
-                            <Link to="/clients" onClick={closeMenu}>Clientes</Link>
+                            <Link to="/clients" onClick={closeMenu}>
+                                Clientes
+                            </Link>
+                        </li>
+                        {
+                          isAdmin &&
+                          <li className="nav-list">
+                            <Link to="/users" onClick={closeMenu}>
+                                  Users
+                              </Link>
+                          </li>
+                        }
+                        <li className="nav-list">
+                            <Link to="/invoices/create" onClick={closeMenu}>
+                                Crear factura
+                            </Link>
                         </li>
                         <li className="nav-list">
-                            <Link to="/invoices/create" onClick={closeMenu}>Crear factura</Link>
+                            <Link to="/invoices" onClick={closeMenu}>
+                                Archivo
+                            </Link>
                         </li>
                         <li className="nav-list">
-                            <Link to="/invoices" onClick={closeMenu}>Archivo</Link>
-                        </li>
-                        <li className="nav-list">
-                            <Link to="/products" onClick={closeMenu}>Productos</Link>
+                            <Link to="/products" onClick={closeMenu}>
+                                Productos
+                            </Link>
                         </li>
                     </ul>
                 </nav>
@@ -93,7 +122,11 @@ function Header() {
                         Cerrar Sesión
                     </button>
                 ) : (
-                    <Link to="/login" className="btn btn-login" onClick={closeMenu}>
+                    <Link
+                        to="/login"
+                        className="btn btn-login"
+                        onClick={closeMenu}
+                    >
                         Iniciar Sesión
                     </Link>
                 )}
