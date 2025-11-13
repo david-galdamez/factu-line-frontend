@@ -65,13 +65,13 @@ export default function Clients() {
                     <div>
                         <button
                             type="submit"
-                            className={`btn btn-register ${loading ? "disabled" : ""}`}
+                            className={`btn-clients-products ${loading ? "disabled" : ""}`}
                         >
                             Filtrar
                         </button>
                         <Link
                             to="/clients/register"
-                            className="btn btn-register"
+                            className="btn-clients-products"
                         >
                             Crear Cliente
                         </Link>

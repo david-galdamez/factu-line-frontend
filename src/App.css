@@ -1029,6 +1029,18 @@ main {
   margin-top: 20px;
 }
 
+.btn-clients-products {
+  background: linear-gradient(90deg, #313899, #525eff);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: none;
+}
+
 
 
 /* --- Media Queries --- */
@@ -1139,4 +1151,54 @@ main {
         max-width: 100px; 
       }
 
+      .form-filter {
+    /* Apila el input y la sección de botones */
+    flex-direction: column;
+    align-items: stretch; /* Estira los elementos al 100% */
+    gap: 15px; /* Añade espacio vertical */
+  }
+
+  .form-filter > div:last-child {
+    /* Apila los botones uno encima del otro */
+    flex-direction: column;
+    justify-content: flex-start; /* Resetea la alineación */
+    gap: 10px; /* Espacio vertical entre botones */
+  }
+
+  .form-filter .btn {
+    width: 100%; /* Hace que los botones ocupen el ancho completo */
+    text-align: center;
+  }
+
+  .table-list {
+    /* Tu 'overflow-x: auto' es la clave. */
+    /* Solo reducimos el padding para dar más espacio */
+    padding: 0.5em;
+  }
+
+  .table-list th,
+  .table-list td {
+    /* Menos padding en celdas para que quepa más info */
+    padding: 10px 8px;
+    font-size: 14px; /* Letra un poco más pequeña */
+  }
+
+  /* 3. Mensaje de tabla vacía */
+  .table-empty {
+    font-size: 1.5em; /* Un poco más pequeño que 2em */
+  }
+
+  .btn-register {
+        /* En pantallas pequeñas, haz que ocupe todo el ancho
+           de su contenedor (ej. el formulario)
+        */
+        width: 100%;
+        
+        /* Opcional: puedes reducir la altura si 50px es muy grande en móvil */
+        height: 48px;
+    }
+
+
+
 }
+
