@@ -1038,6 +1038,7 @@ main {
   justify-content: space-between;
   align-items: center;
   margin-top: 20px;
+  gap : 20px;
 }
 
 .btn-clients-products {
@@ -1198,5 +1199,6 @@ main {
     height: 48px;
   }
 
+  
 
 }

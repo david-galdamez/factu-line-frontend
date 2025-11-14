@@ -73,9 +73,18 @@ export default function Products() {
                     <div>
                         <button
                             type="submit"
-                            className={`btn-clients-products ${loading ? "disabled" : ""}`}
+                            className={`btn-clients-products ${loading ? "loading" : ""}`}
+                            disabled={loading}
                         >
-                            Filtrar
+                            {loading ? (
+                                <>
+                                    <i className="fa fa-spinner fa-pulse"></i>
+                                    <span> Filtrando...</span>
+                                </>
+                            ) : (
+
+                                "Filtrar"
+                            )}
                         </button>
                         <ModalComponent onProductRegister={fetchProducts} />
                     </div>

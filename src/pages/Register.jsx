@@ -212,13 +212,20 @@ function Register() {
                         </p>
                     </div>
 
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className={`btn-register-submit ${loading ? "disabled" : ""}`}
-                    >
-                        Crear cuenta
-                    </button>
+                     <button
+                            type="submit"
+                            className={`btn-register-submit ${loading ? "loading" : ""}`}
+                            disabled={loading}
+                            onClick={handleSubmit}
+                        >
+                            {loading ? (
+                                <>
+                                    <i className="fa fa-spinner fa-spin"></i> Registrando...
+                                </>
+                            ) : (
+                                "Registrar"
+                            )}
+                        </button>
 
                     <div className="login-link">
                         ¿Ya tiene cuenta? <Link to="/login">Inicie sesión</Link>

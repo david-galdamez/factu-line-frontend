@@ -39,7 +39,7 @@ export default function EditProduct({ product, onProductUpdated }) {
                 if (res.status === 400 && data.error?.formErrors) {
                     setZodErrors(data.error.fieldErrors);
                 } else {
-                    throw new Error(data.error || "Algo salió mal");
+                    throw new Error(data.error || "Introduzca correctamente los datos");
                 }
                 return;
             }
@@ -155,12 +155,21 @@ export default function EditProduct({ product, onProductUpdated }) {
                     </div>
                     {error && <p className="error">{error}</p>}
                     <div className="button-container">
+
                         <button
-                            className={`btn-register-submit ${loading ? "disabled" : ""}`}
                             type="submit"
+                            className={`btn-register-submit ${loading ? "loading" : ""}`}
+                            disabled={loading}
                             onClick={handleSubmit}
                         >
-                            Editar
+                            {loading ? (
+                                <>
+                                    <i className="fa fa-spinner fa-spin"></i> Editando...
+                                </>
+                            ) : (
+                                "Editar"
+                            )}
+
                         </button>
                         <button
                             className="btn-register-cancel"

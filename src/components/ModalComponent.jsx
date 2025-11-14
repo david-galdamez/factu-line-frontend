@@ -37,7 +37,7 @@ export default function ModalComponent({ onProductRegister }) {
                 if (res.status === 400 && data.error?.formErrors) {
                     setZodErrors(data.error.fieldErrors);
                 } else {
-                    throw new Error(data.error || "Algo salió mal");
+                    throw new Error(data.error || "Introduzca correctamente los datos");
                 }
                 return;
             }
@@ -93,7 +93,7 @@ export default function ModalComponent({ onProductRegister }) {
     return (
         <>
             <button
-                className="btn btn-register"
+                className="btn-clients-products"
                 type="button"
                 onClick={openModal}
             >
@@ -150,12 +150,20 @@ export default function ModalComponent({ onProductRegister }) {
                     {error && <p className="error">{error}</p>}
                     <div className="button-container">
                         <button
-                            className={`btn-register-submit ${loading ? "disabled" : ""}`}
                             type="submit"
+                            className={`btn-register-submit ${loading ? "loading" : ""}`}
+                            disabled={loading}
                             onClick={handleSubmit}
                         >
-                            Registrar
+                            {loading ? (
+                                <>
+                                    <i className="fa fa-spinner fa-spin"></i> Registrando...
+                                </>
+                            ) : (
+                                "Registrar"
+                            )}
                         </button>
+                        
                         <button
                             className="btn-register-cancel"
                             onClick={closeModal}
