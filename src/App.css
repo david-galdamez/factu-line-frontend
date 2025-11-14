@@ -386,6 +386,17 @@ main {
   transition: transform 0.1s ease-out;
 }
 
+.content-image-mac {
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+}
+
+.content-image-mac img {
+  max-width: 100%;
+  height: auto;
+}
+
 /* --- Footer --- */
 
 .footer {

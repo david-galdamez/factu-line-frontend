@@ -7,6 +7,7 @@ import React from "react";
 import Hero from "../components/Hero";
 import Features from "../components/Features";
 import ContentSection from "../components/ContentSection";
+import ContentSection2 from "../components/ContentSection2";
 
 function HomePage() {
     return (
@@ -14,6 +15,7 @@ function HomePage() {
             <Hero />
             <Features />
             <ContentSection />
+            <ContentSection2 />
         </>
     );
 }

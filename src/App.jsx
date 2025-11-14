@@ -15,6 +15,7 @@ import Invoices from "./pages/Invoices";
 import CreateInvoice from "./pages/CreateInvoice";
 import RegisterClient from "./pages/RegisterClient";
 import Users from "./pages/Users";
+import ContentSection2 from "./components/ContentSection2";
 
 function App() {
     return (
