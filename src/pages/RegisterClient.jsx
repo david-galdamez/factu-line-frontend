@@ -40,8 +40,8 @@ function RegisterClient() {
             const data = await res.json();
 
             if (!res.ok) {
-                if (res.status === 400 && data.error?.formErrors) {
-                    setZodErrors(data.error.fieldErrors);
+                if (res.status === 400 && data.formErrors) {
+                    setZodErrors(data.fieldErrors);
                 } else {
                     throw new Error(data.error || "Algo salió mal");
                 }

@@ -36,10 +36,12 @@ export default function EditProduct({ product, onProductUpdated }) {
 
             const data = await res.json();
             if (!res.ok) {
-                if (res.status === 400 && data.error?.formErrors) {
-                    setZodErrors(data.error.fieldErrors);
+                if (res.status === 400 && data.formErrors) {
+                    setZodErrors(data.fieldErrors);
                 } else {
-                    throw new Error(data.error || "Introduzca correctamente los datos");
+                    throw new Error(
+                        data.error || "Introduzca correctamente los datos",
+                    );
                 }
                 return;
             }
@@ -155,7 +157,6 @@ export default function EditProduct({ product, onProductUpdated }) {
                     </div>
                     {error && <p className="error">{error}</p>}
                     <div className="button-container">
-
                         <button
                             type="submit"
                             className={`btn-register-submit ${loading ? "loading" : ""}`}
@@ -164,12 +165,12 @@ export default function EditProduct({ product, onProductUpdated }) {
                         >
                             {loading ? (
                                 <>
-                                    <i className="fa fa-spinner fa-spin"></i> Editando...
+                                    <i className="fa fa-spinner fa-spin"></i>{" "}
+                                    Editando...
                                 </>
                             ) : (
                                 "Editar"
                             )}
-
                         </button>
                         <button
                             className="btn-register-cancel"
