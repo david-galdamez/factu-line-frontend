@@ -58,6 +58,8 @@ export default function CreateInvoice() {
             setError(error);
         } finally {
             setLoading(false);
+            setInvoiceProducts([]);
+            setSelectedCustomer(null);
         }
     };
 
