@@ -74,7 +74,6 @@ export default function Clients() {
                                     <span> Filtrando...</span>
                                 </>
                             ) : (
-
                                 "Filtrar"
                             )}
                         </button>

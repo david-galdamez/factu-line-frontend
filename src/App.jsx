@@ -16,6 +16,7 @@ import CreateInvoice from "./pages/CreateInvoice";
 import RegisterClient from "./pages/RegisterClient";
 import Users from "./pages/Users";
 import ContentSection2 from "./components/ContentSection2";
+import Invoice from "./pages/Invoice";
 
 function App() {
     return (
@@ -31,6 +32,7 @@ function App() {
                     <Route path="/clients" element={<Clients />} />
                     <Route path="/products" element={<Products />} />
                     <Route path="/invoices" element={<Invoices />} />
+                    <Route path="/invoices/:id" element={<Invoice />} />
                     <Route path="/users" element={<Users />} />
                     <Route
                         path="/clients/register"
