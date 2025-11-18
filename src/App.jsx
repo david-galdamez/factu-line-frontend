@@ -17,6 +17,7 @@ import RegisterClient from "./pages/RegisterClient";
 import Users from "./pages/Users";
 import ContentSection2 from "./components/ContentSection2";
 import Invoice from "./pages/Invoice";
+import RegisterUser from "./pages/RegisterUser";
 
 function App() {
     return (
@@ -41,6 +42,10 @@ function App() {
                     <Route
                         path="/invoices/create"
                         element={<CreateInvoice />}
+                    />
+                    <Route
+                        path="/users/register"
+                        element={<RegisterUser />}
                     />
                 </Route>
             </Routes>

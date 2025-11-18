@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BASE_URL } from "../constants/BaseUrl";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import { verifyLogin } from "../services/VerifyLogin";
 import ModalComponent from "../components/ModalComponent";
 import EditProduct from "../components/EditProduct";
@@ -16,23 +15,25 @@ export default function Products() {
         setNombre(event.target.value);
     };
 
-    const fetchProducts = async () => {
+    const fetchProducts = async (searchTerm = "") => {
+        setLoading(true); 
         try {
             const res = await fetch(
-                `${BASE_URL}/products/list?name=${nombre}`,
+                `${BASE_URL}/products/list?name=${searchTerm}`,
                 {
                     method: "GET",
                     credentials: "include",
                 },
             );
             if (!res.ok) {
-                throw new Error("Error fetching clients");
+                throw new Error("Error fetching products");
             }
 
             const data = await res.json();
-            setProducts(data.data.products);
+            setProducts(data.data?.products || []);
         } catch (err) {
             console.error(err);
+            setProducts([]);
         } finally {
             setLoading(false);
         }
@@ -40,8 +41,7 @@ export default function Products() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        setLoading(true);
-        await fetchProducts();
+        await fetchProducts(nombre);
     };
 
     useEffect(() => {
@@ -50,6 +50,8 @@ export default function Products() {
 
             if (!isLoggedIn) {
                 navigate("/login");
+            } else {
+                await fetchProducts(); 
             }
         };
         verify();
@@ -68,6 +70,7 @@ export default function Products() {
                             type="text"
                             placeholder="Filtrar por nombre producto"
                             onChange={handleChange}
+                            value={nombre}
                         />
                     </div>
                     <div>
@@ -82,16 +85,16 @@ export default function Products() {
                                     <span> Filtrando...</span>
                                 </>
                             ) : (
-
                                 "Filtrar"
                             )}
                         </button>
-                        <ModalComponent onProductRegister={fetchProducts} />
+                        <ModalComponent onProductRegister={() => fetchProducts()} />
                     </div>
                 </form>
+
                 {products.length < 1 ? (
                     <div className="table-empty">
-                        No hay productos registrados
+                         {loading ? "Cargando productos..." : "No hay productos registrados"}
                     </div>
                 ) : (
                     <div className="table-list">
@@ -115,7 +118,7 @@ export default function Products() {
                                         <td>
                                             <EditProduct
                                                 product={product}
-                                                onProductUpdated={fetchProducts}
+                                                onProductUpdated={() => fetchProducts(nombre)}
                                             />
                                         </td>
                                     </tr>

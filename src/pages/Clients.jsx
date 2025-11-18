@@ -1,8 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { verifyLogin } from "../services/VerifyLogin";
 import { BASE_URL } from "../constants/BaseUrl";
-import { useState } from "react";
 
 export default function Clients() {
     const [email, setEmail] = useState("");
@@ -14,11 +13,10 @@ export default function Clients() {
         setEmail(event.target.value);
     };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    const fetchClients = async (searchEmail = "") => {
         setLoading(true);
         try {
-            const res = await fetch(`${BASE_URL}/clients/list?email=${email}`, {
+            const res = await fetch(`${BASE_URL}/clients/list?email=${searchEmail}`, {
                 method: "GET",
                 credentials: "include",
             });
@@ -27,24 +25,31 @@ export default function Clients() {
             }
 
             const data = await res.json();
-            console.log(data);
-            setClients(data.data.clients);
+            setClients(data.data?.clients || []); 
         } catch (err) {
             console.error(err);
+            setClients([]);
         } finally {
             setLoading(false);
         }
     };
 
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        await fetchClients(email);
+    };
+
     useEffect(() => {
-        const verify = async () => {
+        const init = async () => {
             const isLoggedIn = await verifyLogin();
 
             if (!isLoggedIn) {
                 navigate("/login");
+            } else {
+                await fetchClients(); 
             }
         };
-        verify();
+        init();
     }, []);
 
     return (
@@ -60,6 +65,7 @@ export default function Clients() {
                             type="email"
                             placeholder="Filtrar por correo electrónico"
                             onChange={handleChange}
+                            value={email} 
                         />
                     </div>
                     <div>
@@ -85,9 +91,10 @@ export default function Clients() {
                         </Link>
                     </div>
                 </form>
+
                 {clients.length < 1 ? (
                     <div className="table-empty">
-                        No hay clientes registrados
+                        {loading ? "Cargando clientes..." : "No hay clientes registrados"}
                     </div>
                 ) : (
                     <div className="table-list">
@@ -96,8 +103,8 @@ export default function Clients() {
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Correo Electrónico</th>
-                                    <th>Dui</th>
-                                    <th>Direccion</th>
+                                    <th>DUI</th>
+                                    <th>Dirección</th>
                                 </tr>
                             </thead>
                             <tbody>
