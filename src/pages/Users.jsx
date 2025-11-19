@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { verifyLogin } from "../services/VerifyLogin";
+import { verifyAdminStatus } from "../services/VerifyAdmin";
 import { BASE_URL } from "../constants/BaseUrl";
 
 export default function Users() {
@@ -16,10 +17,13 @@ export default function Users() {
     const fetchUsers = async (searchEmail = "") => {
         setLoading(true);
         try {
-            const res = await fetch(`${BASE_URL}/business/users/list?email=${searchEmail}`, {
-                method: "GET",
-                credentials: "include",
-            });
+            const res = await fetch(
+                `${BASE_URL}/business/user/list?email=${searchEmail}`,
+                {
+                    method: "GET",
+                    credentials: "include",
+                },
+            );
             if (!res.ok) {
                 throw new Error("Error fetching users");
             }
@@ -43,8 +47,11 @@ export default function Users() {
     useEffect(() => {
         const init = async () => {
             const isLoggedIn = await verifyLogin();
+            const isAdmin = await verifyAdminStatus();
 
-            if (!isLoggedIn) {
+            if (!isAdmin) {
+                navigate("/invoices");
+            } else if (!isLoggedIn) {
                 navigate("/login");
             } else {
                 await fetchUsers();
@@ -85,7 +92,6 @@ export default function Users() {
                             )}
                         </button>
 
-
                         <Link
                             to="/users/register"
                             className="btn-clients-products"
@@ -97,7 +103,9 @@ export default function Users() {
 
                 {users.length < 1 ? (
                     <div className="table-empty">
-                        {loading ? "Cargando usuarios..." : "No hay usuarios registrados"}
+                        {loading
+                            ? "Cargando usuarios..."
+                            : "No hay usuarios registrados"}
                     </div>
                 ) : (
                     <div className="table-list">
@@ -115,7 +123,9 @@ export default function Users() {
                                         <td>{user.name}</td>
                                         <td>{user.email}</td>
                                         <td>
-                                            {user.role_id === 1 ? "Administrador" : "Usuario"}
+                                            {user.role_id === 1
+                                                ? "Administrador"
+                                                : "Usuario"}
                                         </td>
                                     </tr>
                                 ))}
