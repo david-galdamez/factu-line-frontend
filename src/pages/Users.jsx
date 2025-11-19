@@ -3,10 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { verifyLogin } from "../services/VerifyLogin";
 import { BASE_URL } from "../constants/BaseUrl";
 
-export default function Users() { // 1. Cambiamos el nombre del componente
+export default function Users() {
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
-    const [users, setUsers] = useState([]); // 2. Estado para usuarios
+    const [users, setUsers] = useState([]);
     let navigate = useNavigate();
 
     const handleChange = (event) => {
@@ -16,22 +16,17 @@ export default function Users() { // 1. Cambiamos el nombre del componente
     const fetchUsers = async (searchEmail = "") => {
         setLoading(true);
         try {
-            // 3. CAMBIO DE ENDPOINT: 
-            // Asegúrate de tener creada esta ruta en tu backend (GET /business/users)
-            const res = await fetch(`${BASE_URL}/business/users?email=${searchEmail}`, {
+            const res = await fetch(`${BASE_URL}/business/users/list?email=${searchEmail}`, {
                 method: "GET",
                 credentials: "include",
             });
-            
             if (!res.ok) {
                 throw new Error("Error fetching users");
             }
 
             const data = await res.json();
-            
-            // 4. Ajustamos para leer la data de usuarios
-            // (Asegúrate de que tu backend devuelva { data: { users: [...] } })
-            setUsers(data.data?.users || []); 
+
+            setUsers(data.data?.users || []);
         } catch (err) {
             console.error(err);
             setUsers([]);
@@ -52,7 +47,7 @@ export default function Users() { // 1. Cambiamos el nombre del componente
             if (!isLoggedIn) {
                 navigate("/login");
             } else {
-                await fetchUsers(); 
+                await fetchUsers();
             }
         };
         init();
@@ -60,7 +55,6 @@ export default function Users() { // 1. Cambiamos el nombre del componente
 
     return (
         <section className="hero hero-pages">
-            {/* 5. Título actualizado */}
             <h1>Gestión de Usuarios</h1>
             <div>
                 <form
@@ -90,10 +84,10 @@ export default function Users() { // 1. Cambiamos el nombre del componente
                                 "Filtrar"
                             )}
                         </button>
-                        
+
 
                         <Link
-                            to="/users/register" 
+                            to="/users/register"
                             className="btn-clients-products"
                         >
                             Crear Usuario
@@ -101,7 +95,6 @@ export default function Users() { // 1. Cambiamos el nombre del componente
                     </div>
                 </form>
 
-                {/* 7. Mensajes y Tabla actualizados */}
                 {users.length < 1 ? (
                     <div className="table-empty">
                         {loading ? "Cargando usuarios..." : "No hay usuarios registrados"}
@@ -113,8 +106,7 @@ export default function Users() { // 1. Cambiamos el nombre del componente
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Correo Electrónico</th>
-                                    {/* Quitamos DUI y Dirección, agregamos Rol si lo deseas */}
-                                    <th>Rol</th> 
+                                    <th>Rol</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -122,7 +114,6 @@ export default function Users() { // 1. Cambiamos el nombre del componente
                                     <tr key={user.id}>
                                         <td>{user.name}</td>
                                         <td>{user.email}</td>
-                                        {/* Lógica simple para mostrar el rol */}
                                         <td>
                                             {user.role_id === 1 ? "Administrador" : "Usuario"}
                                         </td>

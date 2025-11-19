@@ -40,7 +40,7 @@ function RegisterUser() {
                 role_id: 2
             };
 
-            const res = await fetch(`${BASE_URL}/business/register/user`, {
+            const res = await fetch(`${BASE_URL}/business/user/register`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
